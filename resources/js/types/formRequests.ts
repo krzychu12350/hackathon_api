@@ -1,17 +1,14 @@
 export type UpdatePlantRequest = {
     name?: string;
     description?: string;
-    preferred_water_amount?: string;
-    location?: string;
-    last_watering?: string;
-    plant_category_id?: string;
+    photo?: File;
+    expected_humidity?: number;
+    current_humidity?: number;
 };
 export type StorePlantRequest = {
     name: string;
     description?: string;
-    preferred_water_amount: string;
-    location: string;
-    last_watering?: string;
+    photo?: File;
     expected_humidity?: number;
     current_humidity?: number;
 };

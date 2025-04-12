@@ -44,10 +44,11 @@ class StorePlantRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'preferred_water_amount' => ['required', new Enum(PlantWaterAmount::class)],
-            'location' => 'required|string',
-            'last_watering' => 'nullable|string|date',
+//            'preferred_water_amount' => ['required', new Enum(PlantWaterAmount::class)],
+//            'location' => 'required|string',
+//            'last_watering' => 'nullable|string|date',
 //            'plant_category_id' => 'required|exists:plant_categories,id',
+            'photo' => 'required|image|mimes:jpg,png|max:5120',
             'expected_humidity' => 'nullable|integer|min:0|max:100',
             'current_humidity' => 'nullable|integer|min:0|max:100',
         ];

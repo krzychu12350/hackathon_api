@@ -43,7 +43,13 @@ class PlantController extends Controller
 
         $user = request()->user();
 
-        $url = $this->storageStrategy->store($request->file('photo'));
+        $file = $request->file('photo');
+        $url = '';
+
+        // Handle file upload
+        if ($file) {
+            $url = $this->storageStrategy->store($request->file('photo'));
+        }
 
         // Create a new file record in the `files` table
         $file = File::create([
