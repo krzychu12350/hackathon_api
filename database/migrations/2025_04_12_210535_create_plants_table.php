@@ -18,10 +18,10 @@ return new class extends Migration
             $table->text('description')->nullable();
 
             // Use enum with values from the enum class
-            $table->enum('preferred_water_amount', PlantWaterAmount::values());
+//            $table->enum('preferred_water_amount', PlantWaterAmount::values());
 
-            $table->string('location'); // e.g. 'Greenhouse A'
-            $table->date('last_watering')->nullable();
+//            $table->string('location'); // e.g. 'Greenhouse A'
+//            $table->date('last_watering')->nullable();
 
             $table->integer('expected_humidity');
             $table->integer('current_humidity');

@@ -18,9 +18,9 @@ class PlantResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'preferred_water_amount' => $this->preferred_water_amount->value,
-            'location' => $this->location,
-            'last_watering' => $this->last_watering,
+//            'preferred_water_amount' => $this->preferred_water_amount->value,
+//            'location' => $this->location,
+//            'last_watering' => $this->last_watering,
             'expected_humidity' => $this->expected_humidity,
             'current_humidity' => rand(0, $this->expected_humidity + 20),// Random value between 0 and expected_humidity
 //            'category' => [
@@ -28,8 +28,6 @@ class PlantResource extends JsonResource
 //                'name' => $this->category->name ?? null,
 //            ],
             'photo' => optional($this->photo)->url,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ];
     }
 }

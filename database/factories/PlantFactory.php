@@ -33,9 +33,9 @@ class PlantFactory extends Factory
         return [
             'name' => $this->faker->word(),
 //            'plant_category_id' => PlantCategory::factory(),
-            'preferred_water_amount' => $this->faker->randomElement(array_column(PlantWaterAmount::cases(), 'value')),
+//            'preferred_water_amount' => $this->faker->randomElement(array_column(PlantWaterAmount::cases(), 'value')),
             'description' => $this->faker->optional()->paragraph(),
-            'location' => $this->faker->randomElement(['outside', 'inside']),
+//            'location' => $this->faker->randomElement(['outside', 'inside']),
             'user_id' => User::factory(),
             'expected_humidity' => $expectedHumidity,
             'current_humidity' => $currentHumidity,
