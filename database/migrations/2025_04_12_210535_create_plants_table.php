@@ -33,7 +33,7 @@ return new class extends Migration
 
             $table->foreignId('file_id')
                 ->nullable()
-                ->unique()
+//                ->unique()
                 ->constrained('files')
                 ->onDelete('set null');
 

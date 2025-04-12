@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Enums\FileType;
+use App\Models\File;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -42,11 +44,16 @@ class PlantDataSeeder extends Seeder
 //                    ->create();
 //            });
 
+        $file = File::create([
+            'url' => 'https://res.cloudinary.com/dysdefjin/image/upload/v1744494928/plant_photos/zsxguhi93lhfkdttyurc.jpg',
+            'type' => FileType::IMAGE,
+        ]);
+
         // Create 5 users
         User::factory()
             ->count(5)  // Create 5 users
             ->create()
-            ->each(function ($user) {
+            ->each(function ($user) use ($file) {
                 // Set the password for each user to "securePassword12?3"
                 $user->update([
                     'password' => bcrypt('securePassword12?3'), // Hash the password
@@ -55,9 +62,10 @@ class PlantDataSeeder extends Seeder
                 // For each user, create 20 plants
                 Plant::factory()
                     ->count(20)  // 20 plants per user
-                    ->state(function (array $attributes) use ($user) {
+                    ->state(function (array $attributes) use ($user, $file) {
                         return [
                             'user_id' => $user->id,  // Assign plants to the created user
+                            'file_id' => $file->id,
                         ];
                     })
                     ->create();
@@ -71,12 +79,15 @@ class PlantDataSeeder extends Seeder
 
             Plant::factory()
                 ->count(20)
-                ->state(function (array $attributes) use ($user) {
+                ->state(function (array $attributes) use ($file, $user) {
                     return [
                         'user_id' => $user->id,
+                        'file_id' => $file->id,
                     ];
                 })
                 ->create();
         }
+
+
     }
 }
