@@ -32,7 +32,7 @@ class PlantController extends Controller
 
         //'category',
         // Get only this user's plants
-        $plants = $user->plants()->with([ 'photo'])->get();
+        $plants = $user->plants()->with([ 'photo'])->latest()->get();
 
         return $this->success(PlantResource::collection($plants));
     }
@@ -65,7 +65,7 @@ class PlantController extends Controller
         $plant->file_id = $file->id;
         $plant->save();
 
-        return $this->success(new PlantResource($plant), 201);
+        return $this->created(new PlantResource($plant), 201);
     }
 
     public function show(User $user, Plant $plant): JsonResponse
