@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AuthControllerOld;
+use App\Http\Controllers\PlantCategoryController;
+use App\Http\Controllers\PlantController;
 use App\Http\Controllers\TypescriptController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,8 +23,33 @@ Route::get('/health', function (Request $request) {
     ]);
 });
 
+//Route::prefix('auth')->group(function () {
+//    Route::post('/login', [AuthControllerOld::class, 'login']);
+//    Route::post('/register', [AuthControllerOld::class, 'register']);
+//    Route::middleware('auth:sanctum')->post('/logout', [AuthControllerOld::class, 'logout']);
+//});
+//
+
 Route::prefix('auth')->group(function () {
-    Route::post('/login', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login', [AuthController::class, 'login']);
+
+//    Route::prefix('/password/reset')->group(function () {
+//        Route::post('/email', [PasswordResetController::class, 'sendPasswordResetEmail']);
+//        Route::post('', [PasswordResetController::class, 'resetPassword']);
+//    });
+
     Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 });
+
+
+Route::middleware('auth:sanctum')->group(function () {
+
+    Route::apiResource('users.plants', PlantController::class);
+
+    Route::apiResource('categories', PlantCategoryController::class)
+        ->only(['index', 'show']);
+
+    Route::apiResource('users', UserController::class)->only('index');
+});
+

@@ -4,7 +4,7 @@
     "scripts": {
         "build": "vite build",
         "dev": "vite",
-        "typegen": "laravel-typegen --form-request"
+        "typegen": "laravel-typegen --form-request --model-path=app/Models"
     },
     "devDependencies": {
         "@7nohe/laravel-typegen": "^0.6.1",

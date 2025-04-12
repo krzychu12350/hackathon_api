@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use JetBrains\PhpStorm\NoReturn;
 
-class AuthController extends Controller
+class AuthControllerOld extends Controller
 {
     public function login(LoginRequest $request): JsonResponse
     {
