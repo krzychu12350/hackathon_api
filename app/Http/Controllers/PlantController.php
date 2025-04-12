@@ -57,7 +57,7 @@ class PlantController extends Controller
             'type' => FileType::IMAGE,
         ]);
 
-        $validated['preferred_water_amount'] = PlantWaterAmount::from($validated['preferred_water_amount']);
+//        $validated['preferred_water_amount'] = PlantWaterAmount::from($validated['preferred_water_amount']);
 
         $plant = $user->plants()->create($validated);
 
@@ -77,13 +77,40 @@ class PlantController extends Controller
     {
         $validated = $request->validated();
 
-        if (isset($validated['preferred_water_amount'])) {
-            $validated['preferred_water_amount'] = PlantWaterAmount::from($validated['preferred_water_amount']);
+        // Handle file upload (if a new photo is uploaded)
+        $file = $request->file('photo');
+        $url = $plant->photo ? $plant->photo->url : ''; // Keep the current photo URL if no new photo is uploaded
+
+        // Only upload the new photo if a file is provided
+        if ($file) {
+            // Handle the file upload via the storage strategy
+            $url = $this->storageStrategy->store($file);
+
+            // Create a new file record in the `files` table
+            $newFile = File::create([
+                'url' => $url,
+                'type' => FileType::IMAGE,
+            ]);
+
+            // Delete the old photo file (if exists) from the storage system
+            if ($plant->file_id) {
+                $oldFile = File::find($plant->file_id);
+                if ($oldFile) {
+                    // Assuming a `delete` method is implemented in the storage strategy to delete the file
+                    $this->storageStrategy->remove($oldFile->url);
+                    $oldFile->delete();
+                }
+            }
+
+            // Attach the new file to the plant
+            $plant->file_id = $newFile->id;
         }
 
+        // Update the plant with the validated data
         $plant->update($validated);
 
-        return $this->success($plant->load('category'));
+        // Return the updated plant resource, including the associated category and photo
+        return $this->success($plant->load(['photo']), 200);
     }
 
     public function destroy(User $user, Plant $plant): JsonResponse

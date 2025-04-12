@@ -15,20 +15,20 @@ class Plant extends Model
 
     protected $fillable = [
         'name',
-        'plant_type',
+//        'plant_type',
         'description',
-        'preferred_water_amount',
-        'location',
-        'last_watering',
-        'plant_category_id',
+//        'preferred_water_amount',
+//        'location',
+//        'last_watering',
+//        'plant_category_id',
         'expected_humidity',
         'current_humidity',
         'file_id',
     ];
 
-    protected $casts = [
-        'preferred_water_amount' => PlantWaterAmount::class,
-    ];
+//    protected $casts = [
+//        'preferred_water_amount' => PlantWaterAmount::class,
+//    ];
 
 //    public function category(): BelongsTo
 //    {
