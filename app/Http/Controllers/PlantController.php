@@ -30,8 +30,9 @@ class PlantController extends Controller
     {
         $user = request()->user();
 
+        //'category',
         // Get only this user's plants
-        $plants = $user->plants()->with(['category', 'photo'])->get();
+        $plants = $user->plants()->with([ 'photo'])->get();
 
         return $this->success(PlantResource::collection($plants));
     }

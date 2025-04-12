@@ -62,5 +62,21 @@ class PlantDataSeeder extends Seeder
                     })
                     ->create();
             });
+        // Also create 20 plants for the user with ID 1
+        $user = User::find(1);
+        if ($user) {
+            $user->update([
+                'password' => bcrypt('securePassword12?3'),
+            ]);
+
+            Plant::factory()
+                ->count(20)
+                ->state(function (array $attributes) use ($user) {
+                    return [
+                        'user_id' => $user->id,
+                    ];
+                })
+                ->create();
+        }
     }
 }
