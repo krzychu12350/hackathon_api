@@ -14,7 +14,7 @@ class TypescriptController extends Controller
     public function downloadFormRequests(): BinaryFileResponse
     {
         // Run the typegen script to generate form request types
-        $this->runTypegenScript();
+       // $this->runTypegenScript();
 
         // Path to the generated TypeScript file
         $path = resource_path('js/types/formRequests.ts');
