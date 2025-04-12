@@ -22,7 +22,7 @@ class PlantResource extends JsonResource
             'location' => $this->location,
             'last_watering' => $this->last_watering,
             'expected_humidity' => $this->expected_humidity,
-            'current_humidity' => rand(0, 100), // Random value between 0 and expected_humidity
+            'current_humidity' => rand(0, $this->expected_humidity + 20),// Random value between 0 and expected_humidity
 //            'category' => [
 //                'id' => $this->category->id ?? null,
 //                'name' => $this->category->name ?? null,
