@@ -15,7 +15,7 @@ Route::get('/health', function (Request $request) {
     return response()->json([
         'status' => 'ok',
         'message' => 'good',
-        'data' => []
+        'data' => [1,2,3,4]
     ]);
 });
 
