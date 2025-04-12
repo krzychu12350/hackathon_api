@@ -12,7 +12,8 @@ export type StorePlantRequest = {
     preferred_water_amount: string;
     location: string;
     last_watering?: string;
-    plant_category_id: string;
+    expected_humidity?: number;
+    current_humidity?: number;
 };
 export type RegisterRequest = {
     name: string;

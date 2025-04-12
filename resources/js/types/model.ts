@@ -1,3 +1,12 @@
+export type File = {
+    id: number;
+    url: string;
+    type: FileType;
+    extension?: FileExtension;
+    created_at?: string;
+    updated_at?: string;
+    plant?: Plant;
+};
 export type LinkedSocialAccount = {
     id: number;
     provider_id: string;
@@ -14,12 +23,14 @@ export type Plant = {
     preferred_water_amount: PlantWaterAmount;
     location: string;
     last_watering?: string;
-    plant_category_id: number;
+    expected_humidity: number;
+    current_humidity: number;
     user_id: number;
+    file_id?: number;
     created_at?: string;
     updated_at?: string;
-    category?: PlantCategory;
     user?: User;
+    photo?: File;
 };
 export type PlantCategory = {
     id: number;
@@ -39,6 +50,28 @@ export type User = {
     linked_social_accounts?: LinkedSocialAccount[];
     plants?: Plant[];
 };
+export enum FileExtension {
+    JPG = "jpg",
+    JPEG = "jpeg",
+    PNG = "png",
+    PDF = "pdf",
+    DOC = "doc",
+    DOCX = "docx",
+    MP3 = "mp3",
+    MP4 = "mp4",
+    WAV = "wav",
+    OGG = "ogg",
+    TXT = "txt",
+    CSV = "csv",
+    OTHER = "other"
+}
+export enum FileType {
+    IMAGE = "image",
+    AUDIO = "audio",
+    VIDEO = "video",
+    DOCUMENT = "document",
+    OTHER = "other"
+}
 export enum PlantWaterAmount {
     SMALL = 0,
     NORMAL = 1,
