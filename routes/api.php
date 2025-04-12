@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthControllerOld;
+use App\Http\Controllers\PhotoUploadController;
 use App\Http\Controllers\PlantCategoryController;
 use App\Http\Controllers\PlantController;
 use App\Http\Controllers\TypescriptController;
@@ -47,9 +48,15 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('users.plants', PlantController::class);
 
+    Route::put('users/{user}/plants/{plant}/', [PlantController::class, 'update']);
+
+    //parowanie
+
+
     Route::apiResource('categories', PlantCategoryController::class)
         ->only(['index', 'show']);
 
     Route::apiResource('users', UserController::class)->only('index');
 });
 
+Route::post('/upload-photo', [PhotoUploadController::class, 'upload']);

@@ -1,11 +1,12 @@
 <?php
 
-use App\Enums\PlantWaterAmount;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Enums\PlantWaterAmount;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -22,10 +23,19 @@ return new class extends Migration {
             $table->string('location'); // e.g. 'Greenhouse A'
             $table->date('last_watering')->nullable();
 
+            $table->integer('expected_humidity');
+            $table->integer('current_humidity');
+
             // Foreign key to plant_categories
-            $table->foreignId('plant_category_id')->constrained()->onDelete('cascade');
+           // $table->foreignId('plant_category_id')->constrained()->onDelete('cascade');
 
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+
+            $table->foreignId('file_id')
+                ->nullable()
+                ->unique()
+                ->constrained('files')
+                ->onDelete('set null');
 
             $table->timestamps();
         });

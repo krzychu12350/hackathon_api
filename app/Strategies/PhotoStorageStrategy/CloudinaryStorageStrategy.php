@@ -9,7 +9,7 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class CloudinaryStorageStrategy implements PhotoStorageStrategy
 {
-    protected $cloudinary;
+    protected Cloudinary $cloudinary;
 
     public function __construct()
     {
@@ -32,7 +32,7 @@ class CloudinaryStorageStrategy implements PhotoStorageStrategy
     {
         // Upload with transformation
         $data = cloudinary()->upload($photo->getRealPath(), [
-            'folder' => 'profile_photos',
+            'folder' => 'plant_photos',
 //            'transformation' => [
 //                'width' => 400,
 //                'height' => 400,
