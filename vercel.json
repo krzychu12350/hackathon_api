@@ -46,6 +46,16 @@
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie",
 
+        "CLOUDINARY_CLOUD_NAME": "dysdefjin",
+        "CLOUDINARY_API_KEY": "388545225291945",
+        "CLOUDINARY_API_SECRET": "ZMVVwenZXy4sYR6qdUo-k5w23hY",
+        "PHOTO_STORAGE": "cloudinary",
+        "CLOUDINARY_URL": "cloudinary://388545225291945:ZMVVwenZXy4sYR6qdUo-k5w23hY@dysdefjin",
+
+        "GOOGLE_CLIENT_ID": "1078774043263-sk7njaf8md9672m9f5oq0kt3csjcdosg.apps.googleusercontent.com",
+        "GOOGLE_CLIENT_SECRET": "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",
+        "GOOGLE_REDIRECT": "http://localhost:5173/callback",
+
         "MAIL_MAILER": "smtp",
         "MAIL_HOST": "sandbox.smtp.mailtrap.io",
         "MAIL_PORT": "2525",
