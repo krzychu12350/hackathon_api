@@ -24,15 +24,15 @@ class UpdatePlantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'string|max:255',
-            'description' => 'string',
+            'name' => 'sometimes|string|max:255',
+            'description' => 'sometimes|string',
 //            'preferred_water_amount' => ['required', new Enum(PlantWaterAmount::class)],
 //            'location' => 'required|string',
 //            'last_watering' => 'nullable|string|date',
 //            'plant_category_id' => 'required|exists:plant_categories,id',
-            'photo' => 'image|mimes:jpg,png|max:5120',
-            'expected_humidity' => 'integer|min:0|max:100',
-            'current_humidity' => 'integer|min:0|max:100',
+            'photo' => 'sometimes|image|mimes:jpg,png|max:5120',
+            'expected_humidity' => 'sometimes|integer|min:0|max:100',
+            'current_humidity' => 'sometimes|integer|min:0|max:100',
         ];
     }
 }

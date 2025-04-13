@@ -46,15 +46,16 @@ Route::prefix('auth')->group(function () {
 
 Route::middleware('auth:sanctum')->group(function () {
 
-    Route::apiResource('users.plants', PlantController::class);
+    Route::apiResource('users.plants', PlantController::class)->except(['update']);
+    Route::post('users/{user}/plants/{plant}', [PlantController::class, 'update']);
 
-    Route::put('users/{user}/plants/{plant}/', [PlantController::class, 'update']);
+//    Route::put('users/{user}/plants/{plant}/', [PlantController::class, 'update']);
 
     //parowanie
 
 
-    Route::apiResource('categories', PlantCategoryController::class)
-        ->only(['index', 'show']);
+//    Route::apiResource('categories', PlantCategoryController::class)
+//        ->only(['index', 'show']);
 
     Route::apiResource('users', UserController::class)->only('index');
 });
