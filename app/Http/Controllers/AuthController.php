@@ -91,6 +91,10 @@ class AuthController extends Controller
         try {
             $user = $this->authStrategy->login($credentials);
 
+            if(!$user) {
+                return $this->error('Wrong credentials', 422);
+            }
+
             return $this->success([
                 'user' => $user,
                 'token' => $user->createToken('auth_token')->plainTextToken,
