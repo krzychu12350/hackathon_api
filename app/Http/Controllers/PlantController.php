@@ -122,8 +122,23 @@ class PlantController extends Controller
             abort(403, 'This plant does not belong to the specified user.');
         }
 
+        // Remove the photo file and DB record if it exists
+        if ($plant->file_id) {
+            $file = $plant->photo; // Assuming 'photo' is the relation to File model
+
+            if ($file) {
+                // Delete from storage
+                $this->storageStrategy->remove($file->url);
+
+                // Delete from DB
+                $file->delete();
+            }
+        }
+
+        // Delete the plant
         $plant->delete();
 
         return $this->noContent();
     }
+
 }
