@@ -20,9 +20,6 @@ export type Plant = {
     id: number;
     name: string;
     description?: string;
-    preferred_water_amount: PlantWaterAmount;
-    location: string;
-    last_watering?: string;
     expected_humidity: number;
     current_humidity: number;
     user_id: number;
